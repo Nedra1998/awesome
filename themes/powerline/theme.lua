@@ -10,40 +10,42 @@ theme.font          = "Liberation Mono for Powerline 12"
 
 theme.wallpaper = "/home/arden/Pictures/Background.png"
 
-theme.base03 =    "#002b36"
-theme.base02 =    "#073642"
-theme.base01 =    "#586e75"
-theme.base00 =    "#657b83"
-theme.base0 =     "#839496"
-theme.base1 =     "#93a1a1"
-theme.base2 =     "#eee8d5"
-theme.base3 =     "#fdf6e3"
-theme.yellow =    "#b58900"
-theme.orange =    "#cb4b16"
-theme.red =       "#dc322f"
-theme.magenta =   "#d33682"
-theme.violet =    "#6c71c4"
-theme.blue =      "#268bd2"
-theme.cyan =      "#2aa198"
-theme.green =     "#859900"
+theme.base03 = "#2c3e50"
+theme.base02 = "#34495e"
+theme.base01 = "#7f8c8d"
+theme.base1  = "#95a5a6"
+theme.base2  = "#bdc3c7"
+theme.base3  = "#ecf0f1"
+
+theme.red = "#e74c3c"
+theme.green = "#2ecc71"
+theme.yellow = "#f1c40f"
+theme.blue = "#3498db"
+theme.magenta = "#9b59b6"
+theme.cyan = "#1abc9c"
+theme.darkred = "#c0392b"
+theme.darkgreen = "#27ae60"
+theme.darkyellow = "#f39c12"
+theme.darkblue = "#2980b9"
+theme.darkmagenta = "#8e44ad"
+theme.darkcyan = "#16a085"
 
 theme.bg_normal     = theme.base03
 theme.bg_focus      = theme.base02
-theme.bg_urgent     = theme.base03
+theme.bg_urgent     = theme.base01
 theme.bg_minimize   = theme.base03
-theme.bg_systray    = theme.base02
+theme.bg_systray    = theme.base03
 
 theme.fg_normal     = theme.base3
-theme.fg_focus      = theme.blue
+theme.fg_focus      = theme.green
 theme.fg_urgent     = theme.red
 theme.fg_minimize   = theme.yellow
 
 theme.useless_gap   = 0
 theme.border_width  = 1
-theme.border_normal = theme.green
-theme.border_focus  = theme.blue
-theme.border_marked = theme.red
-
+theme.border_normal = theme.blue
+theme.border_focus  = theme.green
+theme.border_marked = theme.magenta
 
 theme.tasklist_plain_task_name = true
 theme.tasklist_disable_icon = true
