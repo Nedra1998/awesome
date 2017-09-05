@@ -13,6 +13,7 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Widget scripts
 local lain = require("lain")
 local volume_control = require("widgets/volume-control")
+local net_widgets = require("net_widgets")
 
 -- Load Debian menu entries
 require("debian.menu")
@@ -44,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "powerline")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "flat")
 beautiful.init(theme_path)
 --beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 
@@ -237,6 +238,8 @@ local bat = lain.widget.bat({
   end
 })
 
+local net_wireless = net_widgets.wireless({interface = "wlp3s0"})
+
 local sep = lain.util.separators.arrow_left 
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
@@ -288,14 +291,16 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.container.background(wibox.container.margin(wibox.widget {mem_icon, mem, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.orange),
             sep(beautiful.orange, beautiful.yellow),
             wibox.container.background(volumecfg.widget, beautiful.yellow),
-            sep(beautiful.yellow,beautiful.green),
-            wibox.container.background(wibox.container.margin(wibox.widget {fs_icon, fs, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.green),
+            sep(beautiful.yellow, beautiful.cyan),
+            wibox.container.background(wibox.container.margin(wibox.widget {fs_icon, fs, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.cyan),
+            sep(beautiful.cyan, beautiful.green),
+            wibox.container.background(wibox.container.margin(wibox.widget {bat_icon, bat, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.green),
             sep(beautiful.green, beautiful.blue),
-            wibox.container.background(wibox.container.margin(wibox.widget {bat_icon, bat, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.blue),
-            sep(beautiful.blue,beautiful.cyan),
-            wibox.container.background(mytextclock,beautiful.cyan),
-            sep(beautiful.cyan, beautiful.violet),
-            wibox.container.background(s.mylayoutbox,beautiful.violet),
+            wibox.container.background(net_wireless,beautiful.blue),
+            sep(beautiful.blue, beautiful.magenta),
+            wibox.container.background(mytextclock,beautiful.magenta),
+            sep(beautiful.magenta, beautiful.bg_normal),
+            wibox.container.background(s.mylayoutbox,beautiful.bg_normal),
         },
     }
 end)
