@@ -1,0 +1,3 @@
+[submodule "net_widgets"]
+	path = net_widgets
+	url = https://github.com/pltanton/net_widgets
