@@ -45,7 +45,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "flat")
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "isotope")
 beautiful.init(theme_path)
 --beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 
@@ -240,7 +240,7 @@ local bat = lain.widget.bat({
 
 local net_wireless = net_widgets.wireless({interface = "wlp3s0"})
 
-local sep = lain.util.separators.arrow_left 
+local sep = lain.util.separators.arrow_left
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
@@ -271,6 +271,58 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
+    local wicpu = {
+      wibox.widget{cpu_icon, cpu, layout = wibox.layout.align.horizontal},
+      bg = beautiful.red,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wimem = {
+      wibox.widget{mem_icon, mem, layout = wibox.layout.align.horizontal},
+      bg = beautiful.orange,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wivol = {
+      volumecfg.widget,
+      bg = beautiful.green,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wifs = {
+      wibox.widget {fs_icon, fs, layout= wibox.layout.align.horizontal},
+      bg = beautiful.amber,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wibat = {
+      wibox.widget {bat_icon, bat, layout = wibox.layout.align.horizontal},
+      bg = beautiful.cyan,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wiwi = {
+      net_wireless,
+      bg = beautiful.pale_blue,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wicl = {
+      mytextclock, 
+      bg = beautiful.blue,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+    local wilay = {
+      s.mylayoutbox,
+      bg = beautiful.indigo,
+      fg = beautiful.grey0,
+      widget = wibox.container.background
+    }
+            -- wibox.container.background(net_wireless,beautiful.blue),
+            -- wibox.container.background(mytextclock,beautiful.magenta),
+            -- wibox.container.background(s.mylayoutbox,beautiful.bg_normal),
+
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -285,22 +337,66 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
-            sep(beautiful.bg_normal, beautiful.red),
-            wibox.container.background(wibox.container.margin(wibox.widget {cpu_icon, cpu, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.red),
+            sep(beautiful.bg_focus, beautiful.red),
+            wicpu,
             sep(beautiful.red, beautiful.orange),
-            wibox.container.background(wibox.container.margin(wibox.widget {mem_icon, mem, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.orange),
-            sep(beautiful.orange, beautiful.yellow),
-            wibox.container.background(volumecfg.widget, beautiful.yellow),
-            sep(beautiful.yellow, beautiful.cyan),
-            wibox.container.background(wibox.container.margin(wibox.widget {fs_icon, fs, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.cyan),
-            sep(beautiful.cyan, beautiful.green),
-            wibox.container.background(wibox.container.margin(wibox.widget {bat_icon, bat, layout = wibox.layout.align.horizontal }, 3, 3), beautiful.green),
-            sep(beautiful.green, beautiful.blue),
-            wibox.container.background(net_wireless,beautiful.blue),
-            sep(beautiful.blue, beautiful.magenta),
-            wibox.container.background(mytextclock,beautiful.magenta),
-            sep(beautiful.magenta, beautiful.bg_normal),
-            wibox.container.background(s.mylayoutbox,beautiful.bg_normal),
+            wimem,
+            sep(beautiful.orange, beautiful.amber),
+            wifs,
+            sep(beautiful.amber, beautiful.green),
+            wivol,
+            sep(beautiful.green, beautiful.cyan),
+            wibat,
+            sep(beautiful.cyan, beautiful.pale_blue),
+            wiwi,
+            sep(beautiful.pale_blue, beautiful.blue),
+            wicl,
+            sep(beautiful.blue, beautiful.indigo),
+            wilay,
+            -- wiwi,
+            -- sep(beautiful.indigo, beautiful.deep_purple),
+            -- wicl,
+            -- sep(beautiful.deep_purple, beautiful.purple),
+            -- wilay,
+            -- sep(beautiful.bg_focus, beautiful.pink),
+            -- sep(beautiful.pink, beautiful.red),
+            -- wicpu,
+            -- sep(beautiful.red, beautiful.deep_orange),
+            -- sep(beautiful.deep_orange, beautiful.orange),
+            -- wimem,
+            -- sep(beautiful.orange, beautiful.amber),
+            -- sep(beautiful.amber, beautiful.yellow),
+            -- wivol,
+            -- sep(beautiful.yellow, beautiful.lime),
+            -- sep(beautiful.lime, beautiful.pale_green),
+            -- wifs,
+            -- sep(beautiful.pale_green, beautiful.green),
+            -- sep(beautiful.green, beautiful.teal),
+            -- wiwi,
+            -- sep(beautiful.teal, beautiful.cyan),
+            -- sep(beautiful.cyan, beautiful.pale_blue),
+            -- wibat,
+            -- sep(beautiful.pale_blue, beautiful.blue),
+            -- sep(beautiful.blue, beautiful.indigo),
+            -- wicl,
+            -- sep(beautiful.indigo, beautiful.deep_purple),
+            -- sep(beautiful.deep_purple, beautiful.purple),
+            -- wilay,
+            -- sep(beautiful.red, beautiful.pink),
+            -- sep(beautiful.pink, beautiful.purple),
+            -- sep(beautiful.purple, beautiful.deep_purple),
+            -- sep(beautiful.deep_purple, beautiful.indigo),
+            -- sep(beautiful.indigo, beautiful.blue),
+            -- sep(beautiful.blue, beautiful.pale_blue),
+            -- sep(beautiful.pale_blue, beautiful.cyan),
+            -- sep(beautiful.cyan, beautiful.teal),
+            -- sep(beautiful.teal, beautiful.green),
+            -- sep(beautiful.green, beautiful.pale_green),
+            -- sep(beautiful.pale_green, beautiful.lime),
+            -- sep(beautiful.lime, beautiful.yellow),
+            -- sep(beautiful.yellow, beautiful.amber),
+            -- sep(beautiful.amber, beautiful.orange),
+            -- sep(beautiful.orange, beautiful.deep_orange),
         },
     }
 end)
